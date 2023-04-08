@@ -4,6 +4,14 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>slonikappa</Authors>
+    <Company>slonikappa</Company>
+    <Description>anonfiles.org .NET API that allows to upload files, get the links to the uploaded files and download files by file id (hash)</Description>
+    <PackageProjectUrl>https://github.com/slonikappa/AnonFilesApi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/slonikappa/AnonFilesApi</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>anonfiles; wrapper; api; library; .net6;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
