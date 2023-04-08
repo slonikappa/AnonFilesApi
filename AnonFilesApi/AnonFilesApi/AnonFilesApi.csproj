@@ -13,6 +13,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>anonfiles; wrapper; api; library; .net6;</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>D:\Programming\С#\AnonFilesApi\LICENSE</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
