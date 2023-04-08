@@ -12,7 +12,15 @@
     <RepositoryUrl>https://github.com/slonikappa/AnonFilesApi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>anonfiles; wrapper; api; library; .net6;</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="RestEase" Version="1.6.1" />
