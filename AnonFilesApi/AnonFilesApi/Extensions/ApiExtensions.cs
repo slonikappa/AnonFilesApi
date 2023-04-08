@@ -16,8 +16,10 @@ public static class ApiExtensions
         };
         streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 
-        var formDataContent = new MultipartFormDataContent();
-        formDataContent.Add(streamContent);
+        var formDataContent = new MultipartFormDataContent
+        {
+            streamContent
+        };
 
         return await api.UploadFileAsync(formDataContent);
     }
