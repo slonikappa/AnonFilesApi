@@ -2,11 +2,8 @@
 using AnonFilesApi.Models;
 
 using Newtonsoft.Json;
-
 using RestEase;
 
-using System.Net;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 
 namespace AnonFilesApi.Implementations;
@@ -64,18 +61,28 @@ public class AnonfilesApiClient
         return response?.Data.File.Url.Short;
     }
 
-    public async Task<byte[]> DownloadFileAsync(string fileHash)
+    public async Task<byte[]> DownloadFileByHashAsync(string fileHash)
     {
         var fileDownloadLink = await GetDownloadLinkAsync(fileHash);
 
+        if (string.IsNullOrEmpty(fileDownloadLink))
+        {
+            throw new Exception($"File download link is empty or doesn't exist. Download link: {fileDownloadLink}");
+        }
+
+        return await DownloadFileByDownloadLinkAsync(fileDownloadLink);
+    }
+
+    public async Task<byte[]> DownloadFileByDownloadLinkAsync(string downloadLink)
+    {
         using var httpClient = new HttpClient();
 
-        var downloadPageResponse = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, fileDownloadLink));
+        var downloadPageResponse = await httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Get, downloadLink));
 
         var htmlDownloadPage = await downloadPageResponse!.Content.ReadAsStringAsync();
 
         var match = Regex.Match(htmlDownloadPage, @"https://([A-Za-z0-9]+(-[A-Za-z0-9]+)+)\.anonfiles\.com/[A-Za-z0-9]+/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)");
-        
+
         if (!match.Success)
         {
             return Array.Empty<byte>();
