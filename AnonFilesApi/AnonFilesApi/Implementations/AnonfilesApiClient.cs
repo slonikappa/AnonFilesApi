@@ -1,4 +1,5 @@
 ﻿using AnonFilesApi.Extensions;
+using AnonFilesApi.Interfaces;
 using AnonFilesApi.Models;
 
 using Newtonsoft.Json;
@@ -8,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace AnonFilesApi.Implementations;
 
-public class AnonfilesApiClient
+public class AnonfilesApiClient : IAnonfilesApiClient
 {
     private readonly IAnonFilesApi _api;
 
