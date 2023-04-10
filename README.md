@@ -1,5 +1,6 @@
 # AnonFilesApi
-![NuGet latest version](https://badgen.net/nuget/v/AnonFilesApi/latest)
+![MIT license](https://badgen.net/github/license/micromatch/micromatch)&nbsp;&nbsp;
+[![NuGet latest version](https://badgen.net/nuget/v/AnonFilesApi/latest)](https://www.nuget.org/packages/AnonFilesApi/)
 
 ## General Information
 AnonFilesApi is C#/.NET API wrapper for anonfiles.com api that allows to:
