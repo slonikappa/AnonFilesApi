@@ -1,5 +1,5 @@
 # AnonFilesApi
-Nuget link: https://www.nuget.org/packages/AnonFilesApi/
+!\[NuGet latest version\](https://badgen.net/nuget/v/AnonFilesApi/latest)
 
 ## General Information
 AnonFilesApi is C#/.NET API wrapper for anonfiles.com api that allows to:
