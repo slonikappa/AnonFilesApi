@@ -21,7 +21,7 @@ public class AnonfilesApiClient : IAnonfilesApiClient
     /// Upload file to anonfiles using file path
     /// </summary>
     /// <param name="filePath">Full path to the file</param>
-    /// <returns>AnonFilesResponseModel - model, that represents file information data</returns>
+    /// <returns cref="AnonFilesResponseModel">AnonFilesResponseModel, that represents file information data</returns>
     /// <exception cref="ArgumentException">File not exists</exception>
     /// <exception cref="FileLoadException">File is empty or not loaded correctly</exception>
     public async Task<AnonFilesResponseModel> UploadFileAsync(string filePath)
@@ -37,19 +37,16 @@ public class AnonfilesApiClient : IAnonfilesApiClient
         {
             throw new FileLoadException("File Exception - File is empty or content not loaded");
         }
-        
-        var responseJson = await _api.UploadMultipartFormFileAsync(data);
-        var response = JsonConvert.DeserializeObject<AnonFilesResponseModel>(responseJson);
 
-        return response!;
+        return await UploadFileAsync(data);
     }
 
     /// <summary>
     /// Upload file to anonfiles using file bytes
     /// </summary>
     /// <param name="data">File as byte array</param>
-    /// <returns>AnonFilesResponseModel - model, that represents file information data</returns>
-    public async Task<AnonFilesResponseModel> UploadFileAsync(byte[] data)
+    /// <returns cref="AnonFilesResponseModel">AnonFilesResponseModel, that represents file information data</returns>
+    public async Task<AnonFilesResponseModel>UploadFileAsync(byte[] data)
     {
         var responseJson = await _api.UploadMultipartFormFileAsync(data);
         var response = JsonConvert.DeserializeObject<AnonFilesResponseModel>(responseJson);
@@ -61,7 +58,7 @@ public class AnonfilesApiClient : IAnonfilesApiClient
     /// Get all information about file
     /// </summary>
     /// <param name="fileHash">File hash (id)</param>
-    /// <returns>AnonFilesResponseModel - model, that represents file information data</returns>
+    /// <returns cref="AnonFilesResponseModel">Model, that represents file information data</returns>
     public async Task<AnonFilesResponseModel> GetAllInfo(string fileHash)
     {
         var responseJson = await _api.GetFileInfoAsync(fileHash);
