@@ -1,10 +1,11 @@
 ﻿using System.Net.Http.Headers;
+using AnonFilesApi.Interfaces;
 
 namespace AnonFilesApi.Extensions;
 
 public static class ApiExtensions
 {
-    public static async Task<string> UploadAsync(this IAnonFilesApi api, byte[] fileData)
+    public static async Task<string> UploadMultipartFormFileAsync(this IAnonFilesApi api, byte[] fileData)
     {
         using var memoryStream = new MemoryStream(fileData);
         using var streamContent = new StreamContent(memoryStream);

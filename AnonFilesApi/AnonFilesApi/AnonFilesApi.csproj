@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Authors>slonikappa</Authors>
     <Company>slonikappa</Company>
-    <Description>anonfiles.org .NET API that allows to upload files, get the links to the uploaded files and download files by file id (hash)</Description>
+    <Description>anonfiles.org .NET API that allows to upload files, get the links to the uploaded files and download files</Description>
     <PackageProjectUrl>https://github.com/slonikappa/AnonFilesApi</PackageProjectUrl>
     <RepositoryUrl>https://github.com/slonikappa/AnonFilesApi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -16,6 +16,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeContentInPack>true</IncludeContentInPack>
+	  <Version>1.1.1</Version>
+	  <PackageReleaseNotes>Now library uses HttpClient instead of RestEase lib to send http requests</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="RestEase" Version="1.6.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
