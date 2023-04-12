@@ -7,7 +7,7 @@ public class AnonFilesApi : IAnonFilesApi
     private static AnonFilesApi? _instance;
     public static AnonFilesApi Instance => _instance ??= new AnonFilesApi();
 
-    private static HttpClient _httpClient = new()
+    private static readonly HttpClient _httpClient = new()
     {
         BaseAddress = new Uri("https://api.anonfiles.com/"),
     };
