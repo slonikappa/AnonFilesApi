@@ -3,7 +3,7 @@ using AnonFilesApi.Interfaces;
 
 namespace AnonFilesApi.Extensions;
 
-public static class ApiExtensions
+internal static class ApiExtensions
 {
     public static async Task<string> UploadMultipartFormFileAsync(this IAnonFilesApi api, byte[] fileData, string? fileName = default)
     {

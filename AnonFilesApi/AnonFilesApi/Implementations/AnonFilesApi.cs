@@ -2,7 +2,7 @@ using AnonFilesApi.Interfaces;
 
 namespace AnonFilesApi.Implementations;
 
-public class AnonFilesApi : IAnonFilesApi
+internal class AnonFilesApi : IAnonFilesApi
 {
     private static AnonFilesApi? _instance;
     public static AnonFilesApi Instance => _instance ??= new AnonFilesApi();

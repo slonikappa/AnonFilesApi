@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Authors>slonikappa</Authors>
     <Company>slonikappa</Company>
-    <Description>anonfiles.org .NET API that allows to upload files, get the links to the uploaded files and download files</Description>
+    <Description>anonfiles.org .NET API library that allows to upload files, get the links to the uploaded files and download files</Description>
     <PackageProjectUrl>https://github.com/slonikappa/AnonFilesApi</PackageProjectUrl>
     <RepositoryUrl>https://github.com/slonikappa/AnonFilesApi</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -16,8 +16,8 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeContentInPack>true</IncludeContentInPack>
-	  <Version>1.1.1</Version>
-	  <PackageReleaseNotes>Now library uses HttpClient instead of RestEase lib to send http requests</PackageReleaseNotes>
+	  <Version>1.2.0</Version>
+	  <PackageReleaseNotes>Added ability to provide file name when uploading file. It's optional so not breaking change. Also some files visibility improvements</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

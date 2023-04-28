@@ -1,6 +1,6 @@
 ﻿namespace AnonFilesApi.Interfaces;
 
-public interface IAnonFilesApi
+internal interface IAnonFilesApi
 {
     /// <summary>
     /// Send request to v2/file/{fileHash}/info endpoint
