@@ -5,7 +5,7 @@ namespace AnonFilesApi.Extensions;
 
 public static class ApiExtensions
 {
-    public static async Task<string> UploadMultipartFormFileAsync(this IAnonFilesApi api, byte[] fileData)
+    public static async Task<string> UploadMultipartFormFileAsync(this IAnonFilesApi api, byte[] fileData, string? fileName = default)
     {
         using var memoryStream = new MemoryStream(fileData);
         using var streamContent = new StreamContent(memoryStream);
@@ -13,7 +13,7 @@ public static class ApiExtensions
         streamContent.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
         {
             Name = "file",
-            FileName = $"File-{Guid.NewGuid()}"
+            FileName = fileName ?? $"File-{Guid.NewGuid()}",
         };
         streamContent.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 

@@ -1,17 +1,17 @@
 ﻿using AnonFilesApi.Extensions;
 using AnonFilesApi.Interfaces;
 using AnonFilesApi.Models;
-
 using Newtonsoft.Json;
 using System.Text.RegularExpressions;
 using AnonFilesApi.Exceptions;
+using AnonFilesApi.Helpers;
 
 namespace AnonFilesApi.Implementations;
 
 public class AnonfilesApiClient : IAnonfilesApiClient
 {
     private readonly IAnonFilesApi _api;
-    
+
     public AnonfilesApiClient()
     {
         _api = AnonFilesApi.Instance;
@@ -21,34 +21,36 @@ public class AnonfilesApiClient : IAnonfilesApiClient
     /// Upload file to anonfiles using file path
     /// </summary>
     /// <param name="filePath">Full path to the file</param>
+    /// <param name="fileName">Name of file (optional). If not specified, name of loaded file will be used</param>
     /// <returns cref="AnonFilesResponseModel">AnonFilesResponseModel, that represents file information data</returns>
-    /// <exception cref="ArgumentException">File not exists</exception>
+    /// <exception cref="FileNotFoundException">File not found or not exists</exception>
     /// <exception cref="FileLoadException">File is empty or not loaded correctly</exception>
-    public async Task<AnonFilesResponseModel> UploadFileAsync(string filePath)
+    public async Task<AnonFilesResponseModel> UploadFileAsync(string filePath, string? fileName = default)
     {
         if (!File.Exists(filePath))
         {
-            throw new ArgumentException($"File {filePath} does not exist.");
+            throw new FileNotFoundException($"File Exception - File {filePath} does not exist or wasn't found.");
         }
 
         var data = await File.ReadAllBytesAsync(filePath);
-        
+
         if (!data.Any())
         {
             throw new FileLoadException("File Exception - File is empty or content not loaded");
         }
-
-        return await UploadFileAsync(data);
+        
+        return await UploadFileAsync(data, fileName ?? FileHelpers.GetLoadedFileName(filePath));
     }
 
     /// <summary>
     /// Upload file to anonfiles using file bytes
     /// </summary>
     /// <param name="data">File as byte array</param>
+    /// <param name="fileName">Name of file (optional)</param>
     /// <returns cref="AnonFilesResponseModel">AnonFilesResponseModel, that represents file information data</returns>
-    public async Task<AnonFilesResponseModel>UploadFileAsync(byte[] data)
+    public async Task<AnonFilesResponseModel> UploadFileAsync(byte[] data, string? fileName = default)
     {
-        var responseJson = await _api.UploadMultipartFormFileAsync(data);
+        var responseJson = await _api.UploadMultipartFormFileAsync(data, fileName);
         var response = JsonConvert.DeserializeObject<AnonFilesResponseModel>(responseJson);
 
         return response!;
@@ -92,7 +94,8 @@ public class AnonfilesApiClient : IAnonfilesApiClient
 
         if (string.IsNullOrEmpty(fileDownloadLink))
         {
-            throw new InvalidDownloadLinkException($"File download link is empty or doesn't exist. Download link: {fileDownloadLink}");
+            throw new InvalidDownloadLinkException(
+                $"File download link is empty or doesn't exist. Download link: {fileDownloadLink}");
         }
 
         return await DownloadFileByDownloadLinkAsync(fileDownloadLink);
@@ -109,7 +112,8 @@ public class AnonfilesApiClient : IAnonfilesApiClient
 
         var downloadPageHtml = await _api.GetDownloadPageAsync(downloadLink);
 
-        var match = Regex.Match(downloadPageHtml, @"https://([A-Za-z0-9]+(-[A-Za-z0-9]+)+)\.anonfiles\.com/[A-Za-z0-9]+/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)");
+        var match = Regex.Match(downloadPageHtml,
+            @"https://([A-Za-z0-9]+(-[A-Za-z0-9]+)+)\.anonfiles\.com/[A-Za-z0-9]+/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)");
 
         if (!match.Success)
         {
