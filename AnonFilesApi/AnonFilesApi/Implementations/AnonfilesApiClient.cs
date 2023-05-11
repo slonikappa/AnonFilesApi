@@ -113,7 +113,7 @@ public class AnonfilesApiClient : IAnonfilesApiClient
         var downloadPageHtml = await _api.GetDownloadPageAsync(downloadLink);
 
         var match = Regex.Match(downloadPageHtml,
-            @"https://([A-Za-z0-9]+(-[A-Za-z0-9]+)+)\.anonfiles\.com/[A-Za-z0-9]+/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)/([A-Za-z0-9]+(-[A-Za-z0-9]+)+)");
+            @"https?://([A-Za-z0-9]+(-[A-Za-z0-9]+)+)\.anonfiles\.com/[A-Za-z0-9]+/([A-Za-z0-9]+(-?[A-Za-z0-9]+)+)/(.+\.?[A-Za-z0-9]+)");
 
         if (!match.Success)
         {

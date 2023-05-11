@@ -16,7 +16,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeContentInPack>true</IncludeContentInPack>
-	  <Version>1.2.0</Version>
+	  <Version>1.2.2</Version>
 	  <PackageReleaseNotes>Added ability to provide file name when uploading file. It's optional so not breaking change. Also some files visibility improvements</PackageReleaseNotes>
   </PropertyGroup>
 
