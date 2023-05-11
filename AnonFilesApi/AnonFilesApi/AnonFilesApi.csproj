@@ -17,7 +17,7 @@
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <IncludeContentInPack>true</IncludeContentInPack>
 	  <Version>1.2.2</Version>
-	  <PackageReleaseNotes>Added ability to provide file name when uploading file. It's optional so not breaking change. Also some files visibility improvements</PackageReleaseNotes>
+	  <PackageReleaseNotes>Improvement of the regular expression for parsing download file link</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
